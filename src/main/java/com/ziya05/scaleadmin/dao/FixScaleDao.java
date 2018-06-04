@@ -1,10 +1,12 @@
 package com.ziya05.scaleadmin.dao;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import com.ziya05.scaleadmin.beans.TesteeBaseBean;
+import com.ziya05.scaleadmin.beans.UserBean;
 
 public class FixScaleDao implements IScaleDao {
 
@@ -15,13 +17,17 @@ public class FixScaleDao implements IScaleDao {
 	public List<TesteeBaseBean> getTesteeBaseBeanList(String userName, String date, String scaleName, int pageIndex, int pageLength) {
 		List<TesteeBaseBean> lst = new ArrayList<TesteeBaseBean>();
 
-		lst.add(new TesteeBaseBean(1, 1, "ÖÇÉÌ²âÊÔÁ¿±í", "ÑîĞ¡ÅÖ", "Å®", new Date()));
-		lst.add(new TesteeBaseBean(2, 1, "ÖÇÉÌ²âÊÔÁ¿±í", "ÑîĞ¡ÊÜ", "Å®", new Date()));
-		lst.add(new TesteeBaseBean(3, 2, "»á²»»á³¤ÅÖ²âÊÔÁ¿±í", "¶¬¹Ï", "ÄĞ", new Date()));
-		lst.add(new TesteeBaseBean(4, 2, "»á²»»á³¤ÅÖ²âÊÔÁ¿±í", "ÄÏ¹Ï", "ÄĞ", new Date()));
-		lst.add(new TesteeBaseBean(5, 2, "»á²»»á³¤ÅÖ²âÊÔÁ¿±í", "Î÷¹Ï", "ÄĞ", new Date()));
-		lst.add(new TesteeBaseBean(6, 2, "»á²»»á³¤ÅÖ²âÊÔÁ¿±í", "±±¹Ï", "ÄĞ", new Date()));
+		lst.add(new TesteeBaseBean(1, 1, "è¿™æ˜¯å“ªä¸ªé‡è¡¨", "å“¦", "å¥³", new Date()));
+		lst.add(new TesteeBaseBean(2, 1, "è¿™æ˜¯å“ªä¸ªé‡è¡¨", "å•¦å•¦", "ç”·", new Date()));
+		lst.add(new TesteeBaseBean(3, 2, "è¿™æ˜¯ä¸ºå•¥å‘¢ï¼Ÿ", "å•¦å•¦", "ç”·", new Date()));
+		lst.add(new TesteeBaseBean(4, 2, "è¿™æ˜¯ä¸ºå•¥å‘¢ï¼Ÿ", "å•¦å•¦", "ç”·", new Date()));
+		lst.add(new TesteeBaseBean(5, 2, "è¿™æ˜¯ä¸ºå•¥å‘¢ï¼Ÿ", "å˜¿å˜¿", "å¥³", new Date()));
+		lst.add(new TesteeBaseBean(6, 2, "è¿™æ˜¯ä¸ºå•¥å‘¢ï¼Ÿ", "å˜¿å˜¿", "å¥³", new Date()));
 		
 		return lst;
+	}
+
+	public UserBean getUserBean(String account, String password) {
+		return new UserBean(1, "admin", "123456", "ç®¡ç†å‘˜", 1);
 	}
 }

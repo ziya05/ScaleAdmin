@@ -1,4 +1,7 @@
+var zyAlert;
 $(document).ready(function(){
+	zyAlert = new ZyAlert();
+
 	$(".btn-submit").click(function(){
 		var btn = $(this);
 		var pageIndexHidden = $("input[name=pageIndex]");
@@ -15,12 +18,12 @@ $(document).ready(function(){
 			
 		} else if (btn.hasClass("zy-pages-jump-btn")) {
 			var inputVal = $(".zy-pages-jump-input").val();
-			if (/^\d+$/.test) {
-				newIndex = parseInt();
+			if (/^\d+$/.test(inputVal)) {
+				newIndex = parseInt(inputVal);
 			} else {
-				alert("页码格式不正确！");
+				zyAlert.show("页码格式不正确！");
+				return;
 			}
-			
 		}
 		
 		pageIndexHidden.val(newIndex);

@@ -45,9 +45,9 @@ public class Index extends HttpServlet {
 		
 		IScaleDao dao = ScaleDaoFactory.createScaleDao();
 		
-		int itemCount = 0;
+		int itemsCount = 0;
 		try {
-			itemCount = dao.getPageCount(userName, date, scaleName);
+			itemsCount = dao.getPageCount(userName, date, scaleName);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -56,8 +56,8 @@ public class Index extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		int pageCount = itemCount / pageLength;
-		if (itemCount % pageLength > 0) {
+		int pageCount = itemsCount / pageLength;
+		if (itemsCount % pageLength > 0) {
 			pageCount++;
 		} 
 		if (pageCount == 0) {
@@ -72,6 +72,7 @@ public class Index extends HttpServlet {
 		
 		request.setAttribute("pageIndex", pageIndex);
 		request.setAttribute("pageCount", pageCount);
+		request.setAttribute("itemsCount", itemsCount);
 		
 		List<TesteeBaseBean> lst = null;
 		try {

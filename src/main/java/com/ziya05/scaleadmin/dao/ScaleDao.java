@@ -11,6 +11,7 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 
 import com.ziya05.scaleadmin.beans.TesteeBaseBean;
+import com.ziya05.scaleadmin.beans.UserBean;
 
 public class ScaleDao implements IScaleDao {
 
@@ -96,6 +97,28 @@ public class ScaleDao implements IScaleDao {
 		rs.close();
 		conn.close();
 		return lst;
+	}
+	
+	public UserBean getUserBean(String account, String password) throws ClassNotFoundException, SQLException {
+		Connection conn = this.getConn();
+		
+		String sql = "select id, account, password, name, type from User where account=? and password=?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, account);
+		pstmt.setString(2, password);
+		ResultSet rs = pstmt.executeQuery();
+		
+		UserBean userBean = null;
+		if (rs.next()) {
+			userBean = new UserBean();
+			userBean.setId(rs.getInt("id"));
+			userBean.setAccount(rs.getString("account"));
+			userBean.setPassword(rs.getString("password"));
+			userBean.setName(rs.getString("name"));
+			userBean.setType(rs.getInt("type"));
+		}
+		
+		return userBean;
 	}
 
 	private Connection getConn() throws SQLException, ClassNotFoundException {

@@ -6,8 +6,10 @@
 <html>
 <head>
 	<title>心理测评系统-管理系统</title>
+	<link rel="stylesheet" href="assets/styles/zy-alert.css" />
 	<link rel="stylesheet" href="assets/styles/index.css" /> 
 	<script src="assets/scripts/jquery-3.3.1.min.js"></script>
+	<script src="assets/scripts/zy-alert.js"></script>
 	<script src="assets/scripts/index.js" ></script>
 </head>
 <body>
@@ -51,6 +53,8 @@
 							<span>${ pageIndex }</span>
 							<span>/</span>
 							<span>${ pageCount }</span>
+							<span>-</span>
+							<span>${ itemsCount }</span>
 						</div>
 						<div class="zy-pages-btn zy-pages-next btn-submit"></div>
 						<div class="zy-pages-jump">
