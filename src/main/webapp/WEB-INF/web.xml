@@ -1,0 +1,50 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd">
+
+<web-app>
+  <display-name>Archetype Created Web Application</display-name>
+  <filter>
+  	<filter-name>SessionFilter</filter-name>
+  	<filter-class>com.ziya05.scaleadmin.filter.SessionFilter</filter-class>
+	<init-param>
+         <param-name>sessionKey</param-name>
+         <param-value>user</param-value>
+         <description>将当前登录的用户的信息保存在 session 中时使用的key，如果没有配置此参数，则该过滤器不起作用</description>
+     </init-param>
+     <init-param>
+     	<param-name>redirectUrl</param-name>
+     	<param-value>/login.jsp</param-value>
+     </init-param>
+     <init-param>
+     	<param-name>excepUrlRegex</param-name>
+     	<param-value>^.*(login|assert|favicon|img).*|.*(js|css)$</param-value>
+     </init-param>
+  </filter>
+  
+  <filter-mapping>
+  	<filter-name>SessionFilter</filter-name>
+  	<url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
+  <servlet>
+  	<servlet-name>Login</servlet-name>
+  	<servlet-class>com.ziya05.scaleadmin.Login</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>Index</servlet-name>
+  	<servlet-class>com.ziya05.scaleadmin.Index</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>Login</servlet-name>
+  	<url-pattern>/Login</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>Index</servlet-name>
+  	<url-pattern>/Index</url-pattern>
+  </servlet-mapping>
+  
+  <session-config>
+  	<session-timeout>10</session-timeout>
+  </session-config>
+</web-app>

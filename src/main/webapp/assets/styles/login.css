@@ -1,0 +1,89 @@
+html, body {
+	width: 100%;
+	height: 100%;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+.login-form {
+	height: 100%;
+}
+
+.login-background {
+	position: relative;
+	height: 100%;
+	background: linear-gradient(to bottom,#04b 0%,#81c4f7 100%);
+}
+
+.login-panel {
+	position: absolute;
+	width: 500px;
+	height: 300px;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background: linear-gradient(to bottom, #ccc 0%, #000 100%);
+	border-radius: 15px;
+}
+
+.login-title {
+	height: 100px;
+	text-align: center;
+	padding: 30px;
+	font-size: 24px;
+}
+
+.login-item-container {
+	height: calc(100% - 180px);
+}
+
+.login-input-item, .login-error-item {
+	padding: 10px 50px;
+}
+
+.login-span {
+	display: inline-block;
+	width: 100px;
+	vertical-align: middle;
+}
+
+.login-input {
+	padding: 0 20px;
+	border: 0;
+	width: 200px;
+	height: 30px;
+	border-radius: 15px;
+	vertical-align: middle;
+}
+
+.login-error-item {
+	color: red;
+}
+
+.login-tools {
+	height: 50px;
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	text-align: center;
+}
+
+.login-btn-container {
+	display: inline-block;
+}
+
+.login-btn {
+	height: 35px;
+	width: 150px;
+	border: 0;
+	border-radius: 15px;
+}
+
+.login-btn:hover {
+	cursor: pointer;
+	background: linear-gradient(to bottom, #f00 0%, #e70 100%);
+}
