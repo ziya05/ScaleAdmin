@@ -35,6 +35,10 @@
   	<servlet-name>Index</servlet-name>
   	<servlet-class>com.ziya05.scaleadmin.Index</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>Detail</servlet-name>
+  	<servlet-class>com.ziya05.scaleadmin.Detail</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>Login</servlet-name>
   	<url-pattern>/Login</url-pattern>
@@ -43,7 +47,10 @@
   	<servlet-name>Index</servlet-name>
   	<url-pattern>/Index</url-pattern>
   </servlet-mapping>
-  
+  <servlet-mapping>
+  	<servlet-name>Detail</servlet-name>
+  	<url-pattern>/Detail</url-pattern>
+  </servlet-mapping>
   <session-config>
   	<session-timeout>10</session-timeout>
   </session-config>

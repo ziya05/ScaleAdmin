@@ -3,6 +3,7 @@ package com.ziya05.scaleadmin.beans;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 public class TesteeBaseBean implements Serializable {
 	private static final long serialVersionUID = 1L; 
@@ -14,6 +15,10 @@ public class TesteeBaseBean implements Serializable {
 	private String gender;
 	private Date testTime;
 	private String formatTime;
+	
+	private TesteePersonalInfoBean personalInfo;
+	private List<TesteeDataItemBean> items;
+	private String groups;
 	
 	public TesteeBaseBean() {
 		super();
@@ -82,5 +87,29 @@ public class TesteeBaseBean implements Serializable {
 	public String getFormatTime() {
 		return this.formatTime;
 	}
-	
+
+	public TesteePersonalInfoBean getPersonalInfo() {
+		return personalInfo;
+	}
+
+	public void setPersonalInfo(TesteePersonalInfoBean personalInfo) {
+		this.personalInfo = personalInfo;
+	}
+
+	public List<TesteeDataItemBean> getItems() {
+		return items;
+	}
+
+	public void setItems(List<TesteeDataItemBean> items) {
+		this.items = items;
+	}
+
+	public String getGroups() {
+		return groups;
+	}
+
+	public void setGroups(String groups) {
+		this.groups = groups;
+	}
+
 }
