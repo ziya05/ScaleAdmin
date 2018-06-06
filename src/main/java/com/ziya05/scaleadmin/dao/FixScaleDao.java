@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.ziya05.scaleadmin.beans.ResultAdviceBean;
 import com.ziya05.scaleadmin.beans.TesteeBaseBean;
 import com.ziya05.scaleadmin.beans.TesteeDataItemBean;
 import com.ziya05.scaleadmin.beans.TesteePersonalInfoBean;
@@ -50,6 +51,11 @@ public class FixScaleDao implements IScaleDao {
 	}
 
 	public String GetGroups(int id, int scaleId) throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public List<ResultAdviceBean> GetResultAdviceList(int id, int scaleId) throws ClassNotFoundException, SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}

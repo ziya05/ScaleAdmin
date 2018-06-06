@@ -3,6 +3,7 @@ package com.ziya05.scaleadmin.bo;
 import java.sql.SQLException;
 import java.util.List;
 
+import com.ziya05.scaleadmin.beans.ResultAdviceBean;
 import com.ziya05.scaleadmin.beans.TesteeBaseBean;
 import com.ziya05.scaleadmin.beans.TesteeDataItemBean;
 import com.ziya05.scaleadmin.beans.TesteePersonalInfoBean;
@@ -25,6 +26,10 @@ public class ScaleBo implements IScaleBo {
 		bean.setGroups(groups);
 		
 		return bean;
+	}
+
+	public List<ResultAdviceBean> GetResultAdviceList(int id, int scaleId) throws ClassNotFoundException, SQLException {
+		return dao.GetResultAdviceList(id, scaleId);
 	}
 
 }

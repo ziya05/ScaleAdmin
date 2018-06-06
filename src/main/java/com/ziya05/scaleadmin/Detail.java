@@ -2,6 +2,7 @@ package com.ziya05.scaleadmin;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.ziya05.scaleadmin.beans.ResultAdviceBean;
 import com.ziya05.scaleadmin.beans.TesteeBaseBean;
 import com.ziya05.scaleadmin.bo.IScaleBo;
 import com.ziya05.scaleadmin.factories.ScaleBoFactory;
@@ -47,6 +49,18 @@ public class Detail extends HttpServlet {
 			page = "/base.jsp";
 			
 		} else {
+			try {
+				List<ResultAdviceBean> lst = bo.GetResultAdviceList(id, scaleId);
+				request.setAttribute("adviceLst", lst);
+				
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 			page = "/advice.jsp";
 			
 		}

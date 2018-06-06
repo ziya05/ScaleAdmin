@@ -1,3 +1,4 @@
+
 var zyAlert;
 $(document).ready(function(){
 	zyAlert = new ZyAlert();
@@ -44,8 +45,8 @@ function setItemEvent() {
 			var detailPanel = $(".scale-detail-panel");
 
 			detailPanel.show(500, function() {
-				$(".scale-detail-base-content").load("http://localhost:8080/ScaleAdmin/Detail?id=" + id + "&scaleId=" + scaleId + "&type=base");
-				$(".scale-detail-advice-content").load("http://localhost:8080/ScaleAdmin/Detail?id=" + id + "&scaleId=" + scaleId + "&type=advice");
+				$(".scale-detail-base-content").load(getProtocalHost() + "/ScaleAdmin/Detail?id=" + id + "&scaleId=" + scaleId + "&type=base");
+				$(".scale-detail-advice-content").load(getProtocalHost() + "/ScaleAdmin/Detail?id=" + id + "&scaleId=" + scaleId + "&type=advice");
 			});
 		});
 

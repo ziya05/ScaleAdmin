@@ -3,6 +3,7 @@ package com.ziya05.scaleadmin.dao;
 import java.sql.SQLException;
 import java.util.List;
 
+import com.ziya05.scaleadmin.beans.ResultAdviceBean;
 import com.ziya05.scaleadmin.beans.TesteeBaseBean;
 import com.ziya05.scaleadmin.beans.TesteeDataItemBean;
 import com.ziya05.scaleadmin.beans.TesteePersonalInfoBean;
@@ -22,4 +23,6 @@ public interface IScaleDao {
 	List<TesteeDataItemBean> GetTesteeDataItemList(int id, int scaleId) throws ClassNotFoundException, SQLException, IndexOutOfBoundsException;
 	
 	String GetGroups(int id, int scaleId) throws ClassNotFoundException, SQLException;
+	
+	List<ResultAdviceBean> GetResultAdviceList(int id, int scaleId) throws ClassNotFoundException, SQLException;
 }

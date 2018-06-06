@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page isELIgnored="false" %>
 
 <!DOCTYPE html>
@@ -32,13 +33,60 @@
 			<span>${ baseData.groups }</span>
 		</div>
 		<div class="testee-data">
-			<c:forEach var="item" items="${requestScope.baseData.items }" >
-				<div class="testee-data-item">
-					<span>${ item.questionId }</span>
-					<span>${ item.optionId }</span>
-					<span>${ item.score }</span>
-				</div>
-			</c:forEach>
+			<div class="testee-data-option">
+				<p class="testee-data-title">
+					选项列表：
+				</p>
+				<c:forEach var="item" items="${requestScope.baseData.items }">
+					<c:if test="${item.questionId % 10 == 1}">
+						<div class="testee-data-row">
+							<span class="testee-data-row-head">
+								<fmt:formatNumber type="number" value="${ (item.questionId /10) * 10 }" pattern="000" maxFractionDigits="0" />
+								---
+								<fmt:formatNumber type="number" value="${ (item.questionId / 10 + 1) * 10 - 1 }" pattern="000" maxFractionDigits="0" />
+							</span>
+					</c:if>
+					<span class="testee-data-row-block">
+						${ item.optionId }
+					</span>
+					<c:if test="${item.questionId % 10 != 0 && item.questionId % 5 == 0}">
+						<span class="testee-data-row-split"></span>
+					</c:if>
+					<c:if test="${item.questionId % 10 == 0}">
+						</div>
+					</c:if>
+				</c:forEach>
+				<c:if test="${ requestScope.baseData.items.size() % 10 != 0 }">
+					</div>
+				</c:if>
+			</div>
+			<div class="testee-data-score">
+				<p class="testee-data-title">
+					得分列表：
+				</p>
+				<c:forEach var="item" items="${requestScope.baseData.items }">
+					<c:if test="${item.questionId % 10 == 1}">
+						<div class="testee-data-row">
+							<span class="testee-data-row-head">
+								<fmt:formatNumber type="number" value="${ (item.questionId /10) * 10 }" pattern="000" maxFractionDigits="0" />
+								---
+								<fmt:formatNumber type="number" value="${ (item.questionId / 10 + 1) * 10 - 1 }" pattern="000" maxFractionDigits="0" />
+							</span>
+					</c:if>
+					<span class="testee-data-row-block">
+						${ item.score }
+					</span>
+					<c:if test="${item.questionId % 10 != 0 && item.questionId % 5 == 0}">
+						<span class="testee-data-row-split"></span>
+					</c:if>
+					<c:if test="${item.questionId % 10 == 0}">
+						</div>
+					</c:if>
+				</c:forEach>
+				<c:if test="${ requestScope.baseData.items.size() % 10 != 0 }">
+					</div>
+				</c:if>
+			</div>
 		</div>
 	</div>
 </body>

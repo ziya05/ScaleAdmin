@@ -9,6 +9,7 @@
 	<link rel="stylesheet" href="assets/styles/zy-alert.css" />
 	<link rel="stylesheet" href="assets/styles/index.css" /> 
 	<script src="assets/scripts/jquery-3.3.1.min.js"></script>
+	<script src="assets/scripts/utils.js"></script>
 	<script src="assets/scripts/zy-alert.js"></script>
 	<script src="assets/scripts/index.js" ></script>
 </head>

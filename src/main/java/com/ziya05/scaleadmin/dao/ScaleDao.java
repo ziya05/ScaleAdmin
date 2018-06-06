@@ -11,6 +11,7 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 
 import com.ziya05.scaleadmin.beans.InfoItemBean;
+import com.ziya05.scaleadmin.beans.ResultAdviceBean;
 import com.ziya05.scaleadmin.beans.TesteeBaseBean;
 import com.ziya05.scaleadmin.beans.TesteeDataItemBean;
 import com.ziya05.scaleadmin.beans.TesteePersonalInfoBean;
@@ -224,6 +225,29 @@ public class ScaleDao implements IScaleDao {
 		conn.close();
 		
 		return this.trimLastSign(groups);
+	}
+	
+	public List<ResultAdviceBean> GetResultAdviceList(int id, int scaleId) throws ClassNotFoundException, SQLException {
+		Connection conn = this.getConn();
+		String sql = "select name, description, advice from ResultFactor where testeeBaseId=? and scaleId=?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, id);
+		pstmt.setInt(2, scaleId);
+		ResultSet rs = pstmt.executeQuery();
+		
+		List<ResultAdviceBean> lst = new ArrayList<ResultAdviceBean>();
+		while(rs.next()) {
+			ResultAdviceBean bean = new ResultAdviceBean();
+			bean.setFactorName(rs.getString("name"));
+			bean.setDescription(rs.getString("description"));
+			bean.setAdvice(rs.getString("advice"));
+			lst.add(bean);
+		}
+		
+		rs.close();
+		conn.close();
+		
+		return lst;
 	}
 
 	private Connection getConn() throws SQLException, ClassNotFoundException {

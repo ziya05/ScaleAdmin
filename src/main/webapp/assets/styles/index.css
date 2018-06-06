@@ -2,6 +2,7 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+	font-size: 18px;
 }
 
 html, body {
@@ -262,4 +263,71 @@ body {
 
 .scale-detail-title {
 	font-weight: 600;
+}
+
+.testee-user-base, 
+.testee-personal-info,
+.testee-groups {
+	margin: 15px 20px;
+}
+
+.testee-user-base > span:nth-child(odd),
+.testee-personal-info > span:nth-child(odd),
+.testee-groups > span:nth-child(odd) {
+	font-weight: 600;
+}
+
+.testee-user-base > span:nth-child(even),
+.testee-personal-info > span:nth-child(even),
+.testee-groups > span:nth-child(even) {
+	margin-right: 20px;
+}
+
+.testee-advice-item {
+	margin: 15px 20px;
+}
+
+.testee-advice-factorName {
+	font-weight: 600;
+	margin: 30px;
+}
+
+.testee-advice-description,
+.testee-advice-advice {
+	margin: 30px 0;
+	line-height: 2;
+}
+
+.testee-advice-description > span,
+.testee-advice-advice > span {
+	font-weight: 600;
+}
+
+.testee-data {
+	margin: 20px;
+}
+
+.testee-data-option,
+.testee-data-score {
+	margin: 20px 0;
+}
+
+.testee-data-title {
+	line-height: 2.5;
+	font-weight: 600;
+}
+
+.testee-data-row > span {
+	display: inline-block;
+	width: 25px;
+	line-height: 2;
+	font-weight: 600;
+}
+
+.testee-data-row > .testee-data-row-head {
+	width: 200px;
+}
+
+.testee-data-row > .testee-data-row-split {
+	width: 100px;
 }
