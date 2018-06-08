@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
+
+import com.ziya05.scaleadmin.beans.FactorScoreLevelBean;
 import com.ziya05.scaleadmin.beans.ResultAdviceBean;
 import com.ziya05.scaleadmin.beans.TesteeBaseBean;
 import com.ziya05.scaleadmin.bo.IScaleBo;
@@ -35,6 +38,8 @@ public class Detail extends HttpServlet {
 				TesteeBaseBean bean = bo.getTesteeDataById(id, scaleId);
 				request.setAttribute("baseData", bean);				
 				
+				List<FactorScoreLevelBean> fslLst = bo.GetFactorScoreLevelList(id, scaleId);
+				request.setAttribute("fslLst", fslLst);
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -50,7 +55,9 @@ public class Detail extends HttpServlet {
 			
 		} else {
 			try {
+				TesteeBaseBean base = bo.getTesteeDataById(id, scaleId);
 				List<ResultAdviceBean> lst = bo.GetResultAdviceList(id, scaleId);
+				clear(lst, base);
 				request.setAttribute("adviceLst", lst);
 				
 			} catch (ClassNotFoundException e) {
@@ -68,5 +75,19 @@ public class Detail extends HttpServlet {
 		RequestDispatcher dispatcher = this.getServletContext()
 				.getRequestDispatcher(page);
 		dispatcher.forward(request, response);
+	}
+	
+	private void clear(List<ResultAdviceBean> lst, TesteeBaseBean base) {
+		for (ResultAdviceBean bean : lst) {
+			if (StringUtils.isAllBlank(bean.getDescription())) {
+				bean.setDescription("无");
+			}
+			if (StringUtils.isAllBlank(bean.getAdvice())) {
+				bean.setAdvice("无");
+			}
+			
+			bean.setAdvice(bean.getAdvice().replaceAll("\\{USERNAME\\}", base.getUserName()));
+			bean.setDescription(bean.getDescription().replaceAll("\\{USERNAME\\}", base.getUserName()));
+		}
 	}
 }

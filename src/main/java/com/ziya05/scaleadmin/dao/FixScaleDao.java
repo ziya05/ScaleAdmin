@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.ziya05.scaleadmin.beans.FactorScoreLevelBean;
 import com.ziya05.scaleadmin.beans.ResultAdviceBean;
 import com.ziya05.scaleadmin.beans.TesteeBaseBean;
 import com.ziya05.scaleadmin.beans.TesteeDataItemBean;
@@ -20,12 +21,12 @@ public class FixScaleDao implements IScaleDao {
 	public List<TesteeBaseBean> getTesteeBaseBeanList(String userName, String date, String scaleName, int pageIndex, int pageLength) {
 		List<TesteeBaseBean> lst = new ArrayList<TesteeBaseBean>();
 
-		lst.add(new TesteeBaseBean(1, 1, "这是哪个量表", "哦", "女", new Date()));
-		lst.add(new TesteeBaseBean(2, 1, "这是哪个量表", "啦啦", "男", new Date()));
-		lst.add(new TesteeBaseBean(3, 2, "这是为啥呢？", "啦啦", "男", new Date()));
-		lst.add(new TesteeBaseBean(4, 2, "这是为啥呢？", "啦啦", "男", new Date()));
-		lst.add(new TesteeBaseBean(5, 2, "这是为啥呢？", "嘿嘿", "女", new Date()));
-		lst.add(new TesteeBaseBean(6, 2, "这是为啥呢？", "嘿嘿", "女", new Date()));
+		lst.add(new TesteeBaseBean(1, 1, "这是哪个量表", "哦", "女", 25.0, new Date()));
+		lst.add(new TesteeBaseBean(2, 1, "这是哪个量表", "啦啦", "男", 16.0, new Date()));
+		lst.add(new TesteeBaseBean(3, 2, "这是为啥呢？", "啦啦", "男", 18.0, new Date()));
+		lst.add(new TesteeBaseBean(4, 2, "这是为啥呢？", "啦啦", "男", 19.0, new Date()));
+		lst.add(new TesteeBaseBean(5, 2, "这是为啥呢？", "嘿嘿", "女", 11.5, new Date()));
+		lst.add(new TesteeBaseBean(6, 2, "这是为啥呢？", "嘿嘿", "女", 25.5, new Date()));
 		
 		return lst;
 	}
@@ -35,7 +36,7 @@ public class FixScaleDao implements IScaleDao {
 	}
 
 	public TesteeBaseBean GetTesteeBase(int id, int scaleId) throws ClassNotFoundException, SQLException {
-		return new TesteeBaseBean(3, 2, "这是为啥呢？", "啦啦", "男", new Date());
+		return new TesteeBaseBean(3, 2, "这是为啥呢？", "啦啦", "男", 16.0, new Date());
 	}
 
 	public TesteePersonalInfoBean GetTesteePersonalInfo(int id, int scaleId)
@@ -56,6 +57,12 @@ public class FixScaleDao implements IScaleDao {
 	}
 
 	public List<ResultAdviceBean> GetResultAdviceList(int id, int scaleId) throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public List<FactorScoreLevelBean> GetFactorScoreLevelList(int id, int scaleId)
+			throws ClassNotFoundException, SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}

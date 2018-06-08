@@ -13,6 +13,7 @@ public class TesteeBaseBean implements Serializable {
 	private String scaleName;
 	private String userName;
 	private String gender;
+	private double age;
 	private Date testTime;
 	private String formatTime;
 	
@@ -24,13 +25,14 @@ public class TesteeBaseBean implements Serializable {
 		super();
 	}
 
-	public TesteeBaseBean(int id, int scaleId, String scaleName, String userName, String gender, Date testTime) {
+	public TesteeBaseBean(int id, int scaleId, String scaleName, String userName, String gender, double age, Date testTime) {
 		super();
 		this.id = id;
 		this.scaleId = scaleId;
 		this.scaleName = scaleName;
 		this.userName = userName;
 		this.gender = gender;
+		this.age = age;
 		this.setTestTime(testTime);;
 	}
 
@@ -72,6 +74,14 @@ public class TesteeBaseBean implements Serializable {
 
 	public void setGender(String gender) {
 		this.gender = gender;
+	}
+
+	public double getAge() {
+		return age;
+	}
+
+	public void setAge(double age) {
+		this.age = age;
 	}
 
 	public Date getTestTime() {		

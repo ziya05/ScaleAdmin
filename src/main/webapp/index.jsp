@@ -7,10 +7,12 @@
 <head>
 	<title>心理测评系统-管理系统</title>
 	<link rel="stylesheet" href="assets/styles/zy-alert.css" />
+	<link rel="stylesheet" href="assets/styles/progress.css" />
 	<link rel="stylesheet" href="assets/styles/index.css" /> 
 	<script src="assets/scripts/jquery-3.3.1.min.js"></script>
 	<script src="assets/scripts/utils.js"></script>
 	<script src="assets/scripts/zy-alert.js"></script>
+	<script src="assets/scripts/progress.js"></script>
 	<script src="assets/scripts/index.js" ></script>
 </head>
 <body>
@@ -42,6 +44,7 @@
 								<div class="data-item-col">${ testeeDataBase.scaleName }</div>
 								<div class="data-item-col">${ testeeDataBase.userName }</div>
 								<div class="data-item-col">${ testeeDataBase.gender }</div>
+								<div class="data-item-col">${ testeeDataBase.age }</div>
 								<div class="data-item-col">${ testeeDataBase.formatTime }</div>
 							</div>
 						</c:forEach>

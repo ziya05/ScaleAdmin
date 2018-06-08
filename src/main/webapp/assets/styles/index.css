@@ -136,7 +136,11 @@ body {
 }
 
 .data-item-col:nth-child(5) {
-	width: 100px;
+	width: 50px;
+}
+
+.data-item-col:nth-child(6) {
+	width: 80px;
 }
 
 .index-foot {
@@ -272,19 +276,26 @@ body {
 }
 
 .testee-user-base > span:nth-child(odd),
-.testee-personal-info > span:nth-child(odd),
 .testee-groups > span:nth-child(odd) {
 	font-weight: 600;
 }
 
 .testee-user-base > span:nth-child(even),
-.testee-personal-info > span:nth-child(even),
 .testee-groups > span:nth-child(even) {
 	margin-right: 20px;
 }
 
+.testee-personal-info-item {
+	margin: 10px 0;
+}
+
+.testee-personal-info-item > span:nth-child(odd) {
+	font-weight: 600;
+}
+
 .testee-advice-item {
-	margin: 15px 20px;
+	margin: 100px 20px;
+	border-bottom: 1px solid;
 }
 
 .testee-advice-factorName {
@@ -319,15 +330,25 @@ body {
 
 .testee-data-row > span {
 	display: inline-block;
-	width: 25px;
-	line-height: 2;
+	width: 60px;
+	height: 40px;
 	font-weight: 600;
+	overflow: hidden;
 }
 
 .testee-data-row > .testee-data-row-head {
-	width: 200px;
+	width: 140px;
 }
 
 .testee-data-row > .testee-data-row-split {
-	width: 100px;
+	width: 30px;
+}
+
+.testee-factor-score-level {
+	margin: 20px;
+}
+
+
+.testee-factor-score-level > .testee-data-row > .testee-data-row-head {
+	width: 200px;
 }

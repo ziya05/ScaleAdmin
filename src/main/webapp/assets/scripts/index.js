@@ -38,15 +38,44 @@ function setSubmitEvent() {
 };
 
 function setItemEvent() {
+	var progress = new Progress($(".scale-detail-panel"));
+
 	$(".index-data-item").click(function() {
-			$(".scale-detail-content").text("");
+
 			var id = $(this).find(".data-item-col:eq(0)").text();
 			var scaleId = $(this).find(".data-item-col:eq(1)").text();
 			var detailPanel = $(".scale-detail-panel");
 
+			var baseUrl = getProtocalHost() + "/ScaleAdmin/Detail?id=" + id + "&scaleId=" + scaleId;
+			var basePanel = $(".scale-detail-base-content")
+				.text("");
+
+			var advicePanel = $(".scale-detail-advice-content")
+				.text("");
+
 			detailPanel.show(500, function() {
-				$(".scale-detail-base-content").load(getProtocalHost() + "/ScaleAdmin/Detail?id=" + id + "&scaleId=" + scaleId + "&type=base");
-				$(".scale-detail-advice-content").load(getProtocalHost() + "/ScaleAdmin/Detail?id=" + id + "&scaleId=" + scaleId + "&type=advice");
+				progress.showProgress("结果加载中，请稍后");
+				basePanel.load(baseUrl + "&type=base", function(response, status, xhr) {
+					if (status == "error") {
+						progress.hideProgress();
+						zyAlert.show("加载结果数据失败！", function(){
+							detailPanel.hide(500);
+						});
+					} else {
+						advicePanel.load(baseUrl + "&type=advice", function(response, status, xhr){
+						if (status == "error") {
+							progress.hideProgress();
+							zyAlert.show("加载结果数据失败！", function(){
+								detailPanel.hide(500);
+							});
+						} else {
+							progress.hideProgress();
+							$(".scale-detail-btn-userData").click();
+						}
+					});
+					}
+				});
+				
 			});
 		});
 
