@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 
+import javax.naming.NamingException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -47,9 +48,14 @@ public class Login extends HttpServlet  {
 		
 		UserBean userBean = null;
 		if (!toLogin) {
-			IScaleDao dao = ScaleDaoFactory.createScaleDao();
+			IScaleDao dao;
+
 			try {
+				dao = ScaleDaoFactory.createScaleDao();
 				userBean = dao.getUserBean(userName, password);
+			}catch (NamingException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

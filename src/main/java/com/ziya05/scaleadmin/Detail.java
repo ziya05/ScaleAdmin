@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.naming.NamingException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -19,7 +20,13 @@ import com.ziya05.scaleadmin.bo.IScaleBo;
 import com.ziya05.scaleadmin.factories.ScaleBoFactory;
 
 public class Detail extends HttpServlet {
-	IScaleBo bo = ScaleBoFactory.createScaleBo();
+	IScaleBo bo = null;
+	
+	public Detail() throws NamingException {
+		super();
+		
+		bo = ScaleBoFactory.createScaleBo();
+	}
 	
 	public void doGet(HttpServletRequest request,
             HttpServletResponse response)

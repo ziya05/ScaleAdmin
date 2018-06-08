@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.naming.NamingException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -43,11 +44,15 @@ public class Index extends HttpServlet {
 		
 		int pageLength = 10;
 		
-		IScaleDao dao = ScaleDaoFactory.createScaleDao();
+		IScaleDao dao = null;
 		
 		int itemsCount = 0;
 		try {
+			dao = ScaleDaoFactory.createScaleDao();
 			itemsCount = dao.getPageCount(userName, date, scaleName);
+		}catch (NamingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

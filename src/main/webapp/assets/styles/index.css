@@ -240,6 +240,7 @@ body {
 
 .scale-detail-btn-copy {
 	top: 310px;
+	display: none;
 	background-image: url('../images/copy.png');
 }
 

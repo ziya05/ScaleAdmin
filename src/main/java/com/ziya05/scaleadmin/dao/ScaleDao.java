@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.sql.DataSource;
+
 import org.apache.commons.lang3.StringUtils;
 
 import com.ziya05.scaleadmin.beans.FactorScoreLevelBean;
@@ -19,6 +21,11 @@ import com.ziya05.scaleadmin.beans.TesteePersonalInfoBean;
 import com.ziya05.scaleadmin.beans.UserBean;
 
 public class ScaleDao implements IScaleDao {
+	private DataSource ds;
+	
+	public ScaleDao(DataSource ds) {
+		this.ds = ds;
+	}
 
 	public int getPageCount(String userName, String date, String scaleName) throws ClassNotFoundException, SQLException {
 		Connection conn = this.getConn();
@@ -280,11 +287,7 @@ public class ScaleDao implements IScaleDao {
 	}
 
 	private Connection getConn() throws SQLException, ClassNotFoundException {
-		Class.forName("com.mysql.jdbc.Driver");
-		String url = "jdbc:mysql://localhost:3306/scale?characterEncoding=utf8&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-		Connection conn = DriverManager.getConnection(url, "scale", "scale-01");
-		
-		return conn;
+		return ds.getConnection();
 	}
 	
 	private String getColString(String data) {
