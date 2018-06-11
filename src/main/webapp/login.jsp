@@ -6,7 +6,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>心理测评系统-管理系统-登陆</title>
+	<title>心理测评系统-管理系统-登录</title>
 	<link rel="stylesheet" href="assets/styles/login.css" /> 
 </head>
 <body>
@@ -31,7 +31,7 @@
 				</div>
 				<div class="login-tools">
 					<div class="login-btn-container">
-						<input class="login-btn" type="submit" value="登陆" />
+						<input class="login-btn" type="submit" value="登录" />
 					</div>
 				</div>
 			</div>

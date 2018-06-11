@@ -13,6 +13,8 @@
 <body>
 	<div>
 		<div class="testee-user-base">
+			<span>量表名称：</span>
+			<span>${ baseData.scaleName }</span>
 			<span>被试名：</span>
 			<span>${ baseData.userName }</span>
 			<span>性别：</span>
