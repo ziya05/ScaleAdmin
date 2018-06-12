@@ -14,6 +14,20 @@ body {
 	background: linear-gradient(to bottom,#04b 0%,#81c4f7 100%);
 }
 
+::-webkit-scrollbar {
+	width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #666;
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar-track {
+  background: #ddd;
+  border-radius: 20px;
+}
+
 .index-form {
 	height: 100%;
 }
@@ -103,12 +117,29 @@ body {
 	overflow-y: auto;
 }
 
-.index-data-item {
-	margin: 10px;
-	padding: 10px 20px;
-	height: 40px;
-	background: linear-gradient(to bottom,#3b9bf5 0%,#81c4f7 100%);
+.index-data-item, .index-data-head {
+	margin: 8px;
+	padding: 0 20px;
 	border-radius: 20px;
+}
+
+.index-data-head {
+	height: 40px;
+	padding-top: 8px;
+	padding-bottom: 8px;
+	color: rgb(227, 143, 45);
+	font-weight: 600;
+	background: linear-gradient(to bottom,#333 0%,#444 100%);
+}
+
+.index-data-head > .data-item-col:not(:last-child) {
+	border-right: solid;
+}
+
+.index-data-item {
+	height: 38px;
+	line-height: 38px;
+	background: linear-gradient(to bottom,#3b9bf5 0%,#81c4f7 100%);
 }
 
 .index-data-item:hover {
@@ -117,9 +148,14 @@ body {
 }
 
 .data-item-col {
+	padding-left: 10px;
 	display: inline-block;
 	white-space: nowrap;
 	overflow: hidden;
+}
+
+.index-data-item > .data-item-col {
+	font-size: 16px;
 }
 
 .data-item-col:first-child,
@@ -128,7 +164,7 @@ body {
 }
 
 .data-item-col:nth-child(3) {
-	width: 350px;
+	width: 300px;
 }
 
 .data-item-col:nth-child(4) {
@@ -136,7 +172,7 @@ body {
 }
 
 .data-item-col:nth-child(5) {
-	width: 50px;
+	width: 70px;
 }
 
 .data-item-col:nth-child(6) {
@@ -295,13 +331,14 @@ body {
 }
 
 .testee-advice-item {
-	margin: 100px 20px;
+	margin: 30px 20px;
+	padding: 30px 10px;
 	border-bottom: 1px solid;
 }
 
 .testee-advice-factorName {
 	font-weight: 600;
-	margin: 30px;
+	margin: 20px 0; 
 }
 
 .testee-advice-description,
@@ -352,4 +389,12 @@ body {
 
 .testee-factor-score-level > .testee-data-row > .testee-data-row-head {
 	width: 200px;
+}
+
+.testee-advice-content {
+	word-wrap: break-word;
+    white-space: pre-wrap;
+    line-height: 1.8;
+    font-size: 16px;
+    font-family: Microsoft YaHei;
 }

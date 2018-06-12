@@ -16,8 +16,12 @@
 				<p class="testee-advice-factorName">
 					${ item.factorName } - ${ item.score } - ${ item.level }
 				</p>
-				<p class="testee-advice-description"><span>结果解释</span>-${ item.description }</p>
-				<p class="testee-advice-advice"><span>建议</span>-${ item.advice }</p>
+				<p class="testee-advice-description"><span>结果解释</span>-
+					<pre class="testee-advice-content">${ item.description }</pre>
+				</p>
+				<p class="testee-advice-advice"><span>建议</span>-
+					<pre class="testee-advice-content">${ item.advice }</pre>
+				</p>
 			</div>
 		</c:forEach>
 	</div>

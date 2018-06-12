@@ -34,7 +34,7 @@ public class ScaleDao implements IScaleDao {
 		date = getColString(date);
 		scaleName = getColString(scaleName);
 		
-		String sql = "select count(1) from TesteeBase t, Scale s where t.scaleId = s.id "
+		String sql = "select count(1) from testeebase t, scale s where t.scaleId = s.id "
 				+ " and (case when ? is null then 1=1 else t.name like ? end)"
 				+ " and (case when ? is null then 1=1 else t.testTime like ? end)"
 				+ " and (case when ? is null then 1=1 else s.name like ? end)";
@@ -67,7 +67,7 @@ public class ScaleDao implements IScaleDao {
 		
 		int offset = (pageIndex - 1) * pageLength;
 		
-		String sql = "select t.id as id, s.id as scaleId, s.name as scaleName, t.name as userName, t.gender, t.age, t.testTime from TesteeBase t, Scale s where t.scaleId = s.id "
+		String sql = "select t.id as id, s.id as scaleId, s.name as scaleName, t.name as userName, t.gender, t.age, t.testTime from testeebase t, scale s where t.scaleId = s.id "
 				+ " and (case when ? is null then 1=1 else t.name like ? end)"
 				+ " and (case when ? is null then 1=1 else t.testTime like ? end)"
 				+ " and (case when ? is null then 1=1 else s.name like ? end)"
@@ -106,7 +106,7 @@ public class ScaleDao implements IScaleDao {
 	public UserBean getUserBean(String account, String password) throws ClassNotFoundException, SQLException {
 		Connection conn = this.getConn();
 		
-		String sql = "select id, account, password, name, type from User where account=? and password=?";
+		String sql = "select id, account, password, name, type from user where account=? and password=?";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, account);
 		pstmt.setString(2, password);
@@ -131,7 +131,7 @@ public class ScaleDao implements IScaleDao {
 	public TesteeBaseBean GetTesteeBase(int id, int scaleId) throws ClassNotFoundException, SQLException {
 		Connection conn = this.getConn();
 		
-		String sql = "select t.id as id, s.id as scaleId, s.name as scaleName, t.name as userName, t.gender, t.age, t.testTime from TesteeBase t, Scale s where t.scaleId = s.id and t.id=? and s.id=?";
+		String sql = "select t.id as id, s.id as scaleId, s.name as scaleName, t.name as userName, t.gender, t.age, t.testTime from testeebase t, scale s where t.scaleId = s.id and t.id=? and s.id=?";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setInt(1, id);
 		pstmt.setInt(2, scaleId);
@@ -159,7 +159,7 @@ public class ScaleDao implements IScaleDao {
 			throws ClassNotFoundException, SQLException {
 		Connection conn = this.getConn();
 		
-		String sql = "select name, title, content from TesteePersonalInfo where baseId=? and scaleId=?";
+		String sql = "select name, title, content from testeepersonalinfo where baseId=? and scaleId=?";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setInt(1, id);
 		pstmt.setInt(2, scaleId);
@@ -183,7 +183,7 @@ public class ScaleDao implements IScaleDao {
 	public List<TesteeDataItemBean> GetTesteeDataItemList(int id, int scaleId)
 			throws ClassNotFoundException, SQLException, IndexOutOfBoundsException {
 		Connection conn = this.getConn();
-		String sql = "select questionIds, optionSelected, scoreSelected from TesteeData where baseId=? and scaleId=?";
+		String sql = "select questionIds, optionSelected, scoreSelected from testeedata where baseId=? and scaleId=?";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setInt(1, id);
 		pstmt.setInt(2, scaleId);
@@ -220,7 +220,7 @@ public class ScaleDao implements IScaleDao {
 	
 	public String GetGroups(int id, int scaleId) throws ClassNotFoundException, SQLException {
 		Connection conn = this.getConn();
-		String sql = "select `groups` from ResultBase where testeeBaseId=? and scaleId=?";
+		String sql = "select `groups` from resultbase where testeeBaseId=? and scaleId=?";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setInt(1, id);
 		pstmt.setInt(2, scaleId);
@@ -239,7 +239,7 @@ public class ScaleDao implements IScaleDao {
 	
 	public List<ResultAdviceBean> GetResultAdviceList(int id, int scaleId) throws ClassNotFoundException, SQLException {
 		Connection conn = this.getConn();
-		String sql = "select name, score, levelId, description, advice from ResultFactor where testeeBaseId=? and scaleId=?";
+		String sql = "select name, score, levelId, description, advice from resultfactor where testeeBaseId=? and scaleId=?";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setInt(1, id);
 		pstmt.setInt(2, scaleId);
@@ -265,7 +265,7 @@ public class ScaleDao implements IScaleDao {
 	public List<FactorScoreLevelBean> GetFactorScoreLevelList(int id, int scaleId)
 			throws ClassNotFoundException, SQLException {
 		Connection conn = this.getConn();
-		String sql = "select name, score, levelId from ResultFactor where testeeBaseId=? and scaleId=?";
+		String sql = "select name, score, levelId from resultfactor where testeeBaseId=? and scaleId=?";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setInt(1, id);
 		pstmt.setInt(2, scaleId);

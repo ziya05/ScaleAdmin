@@ -37,6 +37,15 @@
 				</div>
 				<div class="index-data">
 					<div class="index-data-panel">
+						<div class="index-data-head">
+							<div class="data-item-col">id</div>
+							<div class="data-item-col">scaleId</div>
+							<div class="data-item-col">量表名称</div>
+							<div class="data-item-col">被试姓名</div>
+							<div class="data-item-col">性别</div>
+							<div class="data-item-col">年龄</div>
+							<div class="data-item-col">测试时间</div>
+						</div>
 						<c:forEach var="testeeDataBase" items="${requestScope.dataLst }" >
 							<div class="index-data-item">
 								<div class="data-item-col">${ testeeDataBase.id }</div>
