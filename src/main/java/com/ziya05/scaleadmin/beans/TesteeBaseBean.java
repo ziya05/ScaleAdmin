@@ -1,6 +1,7 @@
 package com.ziya05.scaleadmin.beans;
 
 import java.io.Serializable;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -8,15 +9,17 @@ import java.util.List;
 public class TesteeBaseBean implements Serializable {
 	private static final long serialVersionUID = 1L; 
 	
+	private DecimalFormat df = new DecimalFormat("###.#");
+	
 	private int id;
 	private int scaleId;
 	private String scaleName;
 	private String userName;
 	private String gender;
 	private double age;
+	private String formatAge;
 	private Date testTime;
 	private String formatTime;
-	
 	private TesteePersonalInfoBean personalInfo;
 	private List<TesteeDataItemBean> items;
 	private String groups;
@@ -82,6 +85,11 @@ public class TesteeBaseBean implements Serializable {
 
 	public void setAge(double age) {
 		this.age = age;
+		this.formatAge = df.format(age);
+	}
+	
+	public String getFormatAge() {
+		return formatAge;
 	}
 
 	public Date getTestTime() {		

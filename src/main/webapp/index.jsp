@@ -53,7 +53,7 @@
 								<div class="data-item-col">${ testeeDataBase.scaleName }</div>
 								<div class="data-item-col">${ testeeDataBase.userName }</div>
 								<div class="data-item-col">${ testeeDataBase.gender }</div>
-								<div class="data-item-col">${ testeeDataBase.age }</div>
+								<div class="data-item-col">${ testeeDataBase.formatAge }</div>
 								<div class="data-item-col">${ testeeDataBase.formatTime }</div>
 							</div>
 						</c:forEach>

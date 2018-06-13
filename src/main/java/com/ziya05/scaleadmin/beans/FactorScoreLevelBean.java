@@ -1,12 +1,16 @@
 package com.ziya05.scaleadmin.beans;
 
 import java.io.Serializable;
+import java.text.DecimalFormat;
 
 public class FactorScoreLevelBean implements Serializable {
 	private static final long serialVersionUID = 1L; 
 	
+	private DecimalFormat df = new DecimalFormat("#####.###");
+	
 	private String name;
 	private double score;
+	private String formatScore;
 	private int level;
 	
 	public FactorScoreLevelBean() {}
@@ -32,6 +36,11 @@ public class FactorScoreLevelBean implements Serializable {
 
 	public void setScore(double score) {
 		this.score = score;
+		this.formatScore = df.format(score);
+	}
+
+	public String getFormatScore() {
+		return formatScore;
 	}
 
 	public int getLevel() {

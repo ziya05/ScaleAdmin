@@ -14,7 +14,7 @@
 		<c:forEach var="item" items="${requestScope.adviceLst }" >
 			<div class="testee-advice-item">
 				<p class="testee-advice-factorName">
-					${ item.factorName } - ${ item.score } - ${ item.level }
+					${ item.factorName } - ${ item.formatScore } - ${ item.level }
 				</p>
 				<p class="testee-advice-description"><span>结果解释</span>-
 					<pre class="testee-advice-content">${ item.description }</pre>

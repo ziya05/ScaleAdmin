@@ -19,10 +19,10 @@
 			<span>${ baseData.userName }</span>
 			<span>性别：</span>
 			<span>${ baseData.gender }</span>
-			<span>性别：</span>
-			<span>${ baseData.age }</span>
+			<span>年龄：</span>
+			<span>${ baseData.formatAge }</span>
 			<span>测试时间：</span>
-			<span>${ baseData.testTime }</span>
+			<span>${ baseData.formatTime }</span>
 		</div>
 		<div class="testee-personal-info">
 			<c:forEach var="item" items="${requestScope.baseData.personalInfo.items }" >
@@ -101,10 +101,10 @@
 					<span class="testee-data-row-head">
 						${ item.name }
 					</span>
-					<span class="testee-data-row-block" title="${ item.score }">
-						${ item.score }
+					<span class="testee-data-row-block" title="分数：${ item.score }">
+						${ item.formatScore }
 					</span>
-					<span class="testee-data-row-block" title="${ item.level }">
+					<span class="testee-data-row-block" title="等级：${ item.level }">
 						${ item.level }
 					</span>
 				</div>

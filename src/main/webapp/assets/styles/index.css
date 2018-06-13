@@ -2,7 +2,7 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-	font-size: 18px;
+	font-size: 16px;
 }
 
 html, body {
@@ -12,6 +12,10 @@ html, body {
 
 body {
 	background: linear-gradient(to bottom,#04b 0%,#81c4f7 100%);
+}
+
+input:focus {
+	outline: none;
 }
 
 ::-webkit-scrollbar {
@@ -88,6 +92,11 @@ body {
 	border-radius: 15px;
 	vertical-align: middle;
 	padding: 5px 20px;
+}
+
+.index-condition-input:focus {
+	outline: none;
+	border: 2px solid rgb(227, 143, 45);
 }
 
 .index-condition-btn {
@@ -229,6 +238,11 @@ body {
 	padding: 0 20px;
 	border: 0;
 	border-radius: 15px;
+}
+
+.zy-pages-jump-input:focus {
+	outline: none;
+	border: 2px solid rgb(227, 143, 45);
 }
 
 .zy-pages-jump-btn {
@@ -389,6 +403,10 @@ body {
 
 .testee-factor-score-level > .testee-data-row > .testee-data-row-head {
 	width: 200px;
+}
+
+.testee-factor-score-level .testee-data-row-block {
+	width: 150px;
 }
 
 .testee-advice-content {
