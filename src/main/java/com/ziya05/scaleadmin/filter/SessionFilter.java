@@ -28,7 +28,6 @@ public class SessionFilter implements Filter {
 		 
 		String excepUrlRegex = cfg.getInitParameter("excepUrlRegex");
 		if (!StringUtils.isBlank(excepUrlRegex)) {
-			System.out.println("excepUrlRegex is: " + excepUrlRegex);
 			excepUrlPattern = Pattern.compile(excepUrlRegex, Pattern.CASE_INSENSITIVE);
 		}
 		
@@ -37,8 +36,7 @@ public class SessionFilter implements Filter {
 
 	public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
 			throws IOException, ServletException {
-		System.out.println("sessionkey is:" + sessionKey);
-		
+
 		if (StringUtils.isBlank(sessionKey)) {
 			chain.doFilter(req, res);
 			return;
@@ -50,10 +48,6 @@ public class SessionFilter implements Filter {
 		String type = request.getHeader("X-Requested-With") == null ? ""
 				: request.getHeader("X-Requested-With");
 		
-		System.out.println("redirectUrl is:" + redirectUrl);
-		System.out.println(servletPath);
-		System.out.println(excepUrlPattern.matcher(servletPath).matches());
-		
 		if(servletPath.equals(redirectUrl)
 				|| excepUrlPattern.matcher(servletPath).matches()) {
 			chain.doFilter(req, res);
@@ -63,13 +57,11 @@ public class SessionFilter implements Filter {
 		Object sessionObj = request.getSession().getAttribute(sessionKey);
 		
 		if (sessionObj == null) {
-			System.out.println("sessionObj is null");
-			
+
 			String contextPath = request.getContextPath();
 			String redirect = servletPath + "?"
 					+ StringUtils.defaultString(request.getQueryString());  
-			System.out.println(redirect);
-			
+
 			String jumpUrl = contextPath + StringUtils.defaultString(redirectUrl, "/") 
 					+ "?redirect=" + URLEncoder.encode(redirect, "UTF-8");
 			if("XMLHttpRequest".equals(type)) {
@@ -82,7 +74,6 @@ public class SessionFilter implements Filter {
 				response.sendRedirect(jumpUrl);
 			}
 		} else {
-			System.out.println(sessionObj.toString());
 			chain.doFilter(req, res);
 		}
 	}
