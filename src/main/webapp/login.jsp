@@ -10,7 +10,7 @@
 	<link rel="stylesheet" href="assets/styles/login.css" /> 
 </head>
 <body>
-	<form class="login-form" action="Login" method="post">
+	<form class="login-form" action="Login${ requestScope.redirect }" method="post">
 		<div class="login-background">
 			<div class="login-panel">
 				<div class="login-title">心理测评系统-管理系统</div>

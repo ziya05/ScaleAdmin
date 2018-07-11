@@ -30,7 +30,7 @@ public class Index extends HttpServlet {
             HttpServletResponse response)
     throws ServletException, IOException
 	{ 
-		request.setCharacterEncoding("utf-8");
+		//request.setCharacterEncoding("utf-8");
 		String userName = request.getParameter("userName");
 		String date = request.getParameter("date");
 		String scaleName = request.getParameter("scaleName");

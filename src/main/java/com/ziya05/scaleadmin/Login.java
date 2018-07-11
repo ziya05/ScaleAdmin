@@ -25,6 +25,13 @@ public class Login extends HttpServlet  {
             HttpServletResponse response)
     throws ServletException, IOException
 	{  
+		String redirect = request.getParameter("redirect");
+		if (StringUtils.isAllBlank(redirect)) {
+			request.setAttribute("redirect", "?redirect=" + redirect);
+		}
+		
+		System.out.println("redirect1: " + redirect);
+		
 		RequestDispatcher dispatcher = this.getServletContext()
 				.getRequestDispatcher("/login.jsp");
 		dispatcher.forward(request, response);
@@ -34,6 +41,13 @@ public class Login extends HttpServlet  {
              HttpServletResponse response)
      throws ServletException, IOException
 	{    
+		String redirect = request.getParameter("redirect");
+		System.out.println("redirect2: " + redirect);
+		if (StringUtils.isAllBlank(redirect)) {
+			request.setAttribute("redirect", "?redirect=" + redirect);
+		}
+		
+		 
 		String userName = request.getParameter("userName");
 		String password = request.getParameter("password");
 		
@@ -76,7 +90,15 @@ public class Login extends HttpServlet  {
 		} else {
 			HttpSession session = request.getSession();
 			session.setAttribute("user", userBean);
-			response.sendRedirect("Index");
+			
+			System.out.println("跳转路径为： " + redirect);
+			
+			if (StringUtils.isAllBlank(redirect)) {
+				response.sendRedirect("Index");
+			} else {
+				response.sendRedirect(redirect);
+			}
+						
 		}
 	}
 }

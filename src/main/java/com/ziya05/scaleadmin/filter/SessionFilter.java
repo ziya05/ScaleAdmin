@@ -44,6 +44,7 @@ public class SessionFilter implements Filter {
 		
 		HttpServletRequest request = (HttpServletRequest) req;
 		HttpServletResponse response = (HttpServletResponse) res;
+		
 		String servletPath = request.getServletPath();
 		String type = request.getHeader("X-Requested-With") == null ? ""
 				: request.getHeader("X-Requested-With");
