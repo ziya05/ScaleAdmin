@@ -13,6 +13,7 @@ import javax.sql.DataSource;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.ziya05.scaleadmin.beans.BaseScaleBean;
 import com.ziya05.scaleadmin.beans.FactorScoreLevelBean;
 import com.ziya05.scaleadmin.beans.InfoItemBean;
 import com.ziya05.scaleadmin.beans.ResultAdviceBean;
@@ -68,7 +69,7 @@ public class ScaleDao implements IScaleDao {
 		
 		return count;
 	}
-
+	
 	public List<TesteeBaseBean> getTesteeBaseBeanList(String userName, String date, String scaleName, 
 			int pageIndex,
 			int pageLength) throws ClassNotFoundException, SQLException {
@@ -161,6 +162,40 @@ public class ScaleDao implements IScaleDao {
 		}
 		
 		return userBean;
+	}
+	
+	public BaseScaleBean getBaseScale(int scaleId) throws ClassNotFoundException, SQLException {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		BaseScaleBean baseScale = null;
+		
+		try {
+			conn = this.getConn();
+			
+			String sql = "select scaleNumber, name, description, questionCount, chartType from scale where id=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, scaleId);
+
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				baseScale = new BaseScaleBean();
+				baseScale.setScaleNumber(rs.getString("scaleNumber"));
+				baseScale.setName(rs.getString("name"));
+				baseScale.setDescription(rs.getString("description"));
+				baseScale.setQuestionCount(rs.getInt("questionCount"));
+				baseScale.setChartType(rs.getInt("chartType"));
+			}
+		
+		} finally {
+			this.closeResultSet(rs);
+			this.closeStatement(pstmt);
+			this.closeConn(conn);
+		}
+		
+		return baseScale;
 	}
 	
 	public TesteeBaseBean GetTesteeBase(int id, int scaleId) throws ClassNotFoundException, SQLException {
@@ -320,15 +355,19 @@ public class ScaleDao implements IScaleDao {
 		
 		try {
 			conn = this.getConn();
-			String sql = "select name, score, levelId, description, advice from resultfactor where testeeBaseId=? and scaleId=?";
+			String sql = "select r.factorId, r.name, r.score, r.levelId, l.description, l.advice "
+					+ "from resultfactor r, level l where r.testeeBaseId = ? and r.scaleId = ? "
+					+ "and r.levelId > 0 and r.scaleId = l.scaleId "
+					+ "and r.factorId = l.factorId and r.levelId = l.levelId order by r.factorId";
+			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, id);
 			pstmt.setInt(2, scaleId);
 			rs = pstmt.executeQuery();
 			
-			
 			while(rs.next()) {
 				ResultAdviceBean bean = new ResultAdviceBean();
+				bean.setFactorId(rs.getInt("factorId"));
 				bean.setFactorName(rs.getString("name"));
 				bean.setScore(rs.getDouble("score"));
 				bean.setLevel(rs.getInt("levelId"));
@@ -347,6 +386,19 @@ public class ScaleDao implements IScaleDao {
 	
 	public List<FactorScoreLevelBean> GetFactorScoreLevelList(int id, int scaleId)
 			throws ClassNotFoundException, SQLException {
+		String sql = "select factorId, name, score, levelId from resultfactor where testeeBaseId=? and scaleId=? order by factorId";
+		return this.GetFactorScoreLevelList(id, scaleId, sql);
+	}
+	
+	public List<FactorScoreLevelBean> GetFactorScoreLevelListForChart(int id, int scaleId)
+			throws ClassNotFoundException, SQLException {
+		String sql = "select r.factorId, r.name, r.score, r.levelId from resultfactor r, factor f  where r.testeeBaseId=? and r.scaleId=? and r.scaleId = f.scaleId and r.factorId = f.factorId and f.inChart = 1 order by r.factorId";
+		return this.GetFactorScoreLevelList(id, scaleId, sql);
+	}
+	
+	private List<FactorScoreLevelBean> GetFactorScoreLevelList(int id, int scaleId, String sql) 
+			throws ClassNotFoundException, SQLException{
+		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -355,7 +407,7 @@ public class ScaleDao implements IScaleDao {
 		
 		try {
 			conn = this.getConn();
-			String sql = "select name, score, levelId from resultfactor where testeeBaseId=? and scaleId=?";
+			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, id);
 			pstmt.setInt(2, scaleId);
@@ -363,6 +415,7 @@ public class ScaleDao implements IScaleDao {
 			
 			while(rs.next()) {
 				FactorScoreLevelBean bean = new FactorScoreLevelBean();
+				bean.setFactorId(rs.getInt("factorId"));
 				bean.setName(rs.getString("name"));
 				bean.setScore(rs.getDouble("score"));
 				bean.setLevel(rs.getInt("levelId"));

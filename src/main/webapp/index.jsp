@@ -84,15 +84,20 @@
 				<div class="scale-detail-btn scale-detail-btn-close" title="关闭"></div>
 				<div class="scale-detail-btn scale-detail-btn-userData" title="查看基本数据"></div>
 				<div class="scale-detail-btn scale-detail-btn-advice" title="查看解释及建议"></div>
+				<div class="scale-detail-btn scale-detail-btn-chart" title="查看因子得分图"></div>
 				<div class="scale-detail-btn scale-detail-btn-copy" title="拷贝到剪切板"></div>
 				<div class="scale-detail-container">
-					<div class="scale-detail-base">
+					<div class="scale-detail-tab scale-detail-base">
 						<p class="scale-detail-title">用户基础数据</p>
 						<div class="scale-detail-content scale-detail-base-content"></div>
 					</div>
-					<div class="scale-detail-advice">
+					<div class="scale-detail-tab scale-detail-advice">
 						<p class="scale-detail-title">结果解释及建议</p>
 						<div class="scale-detail-content scale-detail-advice-content"></div>
+					</div>
+					<div class="scale-detail-tab scale-detail-chart">
+						<p class="scale-detail-title"></p>
+						<div class="scale-detail-content scale-detail-chart-content"></div>
 					</div>
 				</div>
 			</div>

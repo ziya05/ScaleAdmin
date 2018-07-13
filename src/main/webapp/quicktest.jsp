@@ -18,32 +18,36 @@
 				$(this).val("");
 			})
 		}
+		
+		function quickInput(text) {
+
+			var vals = text.split(/\t|\n/);
+			
+			var questionInput = $(".questionInput");
+			var inputSize = questionInput.length;
+			var valsSize = vals.length;
+			
+			for(var i = 0; i < inputSize && i < valsSize; i++) {
+				questionInput.eq(i).val(vals[i]);
+			}
+		}
 	
 		$(document).ready(function() {
 			$("#btnClear").click(function() {
 				$("#answerConent").val("");
 				clearInputs();
 			})
-			
-			$("#btnCopy").click(function() {
-				clearInputs();
-				
-				var textVal = $("#answerConent").val();
-
-				var vals = textVal.split(/\t|\n/);
-				
-				var questionInput = $(".questionInput");
-				var inputSize = questionInput.length;
-				var valsSize = vals.length;
-				
-				for(var i = 0; i < inputSize && i < valsSize; i++) {
-					questionInput.eq(i).val(vals[i]);
-				}
-				
-			})
-			
+						
 			$("#scaleSelect").change(function() {
 				$("#getform").submit();
+			})
+			
+			$("#answerConent").change(function(){
+				var text = $("#answerConent").val().trim();
+				if (text != "") {
+					clearInputs();
+					quickInput(text);
+				}
 			})
 		})
 	</script>
@@ -191,7 +195,7 @@
 			<textarea id="answerConent" ></textarea>
 		
 			<div>
-				<input id="btnCopy" type="button" class="btn" value="应用" />
+				<input type="button" class="btn" value="应用" />
 				<input id="btnClear" type="button" class="btn" value="清空" />
 			</div>
 			

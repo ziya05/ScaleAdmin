@@ -3,6 +3,7 @@ package com.ziya05.scaleadmin.dao;
 import java.sql.SQLException;
 import java.util.List;
 
+import com.ziya05.scaleadmin.beans.BaseScaleBean;
 import com.ziya05.scaleadmin.beans.FactorScoreLevelBean;
 import com.ziya05.scaleadmin.beans.ResultAdviceBean;
 import com.ziya05.scaleadmin.beans.TesteeBaseBean;
@@ -17,6 +18,8 @@ public interface IScaleDao {
 	
 	UserBean getUserBean(String account, String password) throws ClassNotFoundException, SQLException;
 
+	BaseScaleBean getBaseScale(int scaleId) throws ClassNotFoundException, SQLException;
+	
 	TesteeBaseBean GetTesteeBase(int id, int scaleId) throws ClassNotFoundException, SQLException;
 
 	TesteePersonalInfoBean GetTesteePersonalInfo(int id, int scaleId) throws ClassNotFoundException, SQLException;
@@ -28,4 +31,6 @@ public interface IScaleDao {
 	List<ResultAdviceBean> GetResultAdviceList(int id, int scaleId) throws ClassNotFoundException, SQLException;
 	
 	List<FactorScoreLevelBean> GetFactorScoreLevelList(int id, int scaleId) throws ClassNotFoundException, SQLException;
+	
+	List<FactorScoreLevelBean> GetFactorScoreLevelListForChart(int id, int scaleId) throws ClassNotFoundException, SQLException;
 }

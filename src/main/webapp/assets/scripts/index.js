@@ -52,30 +52,67 @@ function setItemEvent() {
 
 			var advicePanel = $(".scale-detail-advice-content")
 				.text("");
+			
+			var chartPanel = $(".scale-detail-chart-content")
+				.text("");
 
 			detailPanel.show(500, function() {
 				progress.showProgress("结果加载中，请稍后");
-				basePanel.load(baseUrl + "&type=base", function(response, status, xhr) {
-					if (status == "error") {
-						progress.hideProgress();
-						zyAlert.show("加载结果数据失败！", function(){
-							detailPanel.hide(500);
-						});
-					} else {
-						advicePanel.load(baseUrl + "&type=advice", function(response, status, xhr){
-						if (status == "error") {
-							progress.hideProgress();
-							zyAlert.show("加载结果数据失败！", function(){
-								detailPanel.hide(500);
-							});
-						} else {
-							progress.hideProgress();
-							$(".scale-detail-btn-userData").click();
-						}
-					});
-					}
+				
+				var arr = new Array(0, 0, 0);
+				
+				basePanel.load(baseUrl + "&type=base", function(response, status, xhr){
+					completed(status, 0);
 				});
 				
+				advicePanel.load(baseUrl + "&type=advice", function(response, status, xhr) {
+					completed(status, 1);
+				});
+				
+				chartPanel.load(baseUrl + "&type=chart", function(response, status, xhr) {
+					completed(status, 2);
+				});
+				
+				function completed(status, index) {
+					if (status == "error") {
+						arr[index] = 2;
+					} else {
+						arr[index] = 1;
+					}
+				}
+				
+				function check() {
+					var finished = true;
+					var status = 0;
+					
+					$.each(arr, function(i, item) {
+						if (item == 0) {
+							finished = false;
+							return false;
+						}
+						
+						if (item > status) {
+							status = item;
+						}
+					});
+					
+					if (finished) {
+						progress.hideProgress();
+						
+						if (status == 2) {
+							zyAlert.show("全部或部分结果加载失败！", function() {
+								$(".scale-detail-btn-userData").click();
+							});
+						} else {
+							$(".scale-detail-btn-userData").click();
+						}
+					} else {
+						setTimeout(check, 500);
+					}
+				}
+				
+				setTimeout(check, 500);
+
 			});
 		});
 
@@ -94,5 +131,16 @@ function setDetailEvent() {
 	$(".scale-detail-btn-advice").click(function() {
 		$(".scale-detail-container > div").hide();
 		$(".scale-detail-advice").show(500);
+	});
+	
+	$(".scale-detail-btn-chart").click(function() {
+		$(".scale-detail-container > div").hide();
+		$(".scale-detail-chart").show(500, function() {
+			if (typeof resizeChart !== 'undefined' && resizeChart) {
+				resizeChart();
+			}
+			
+		});
+		
 	});
 };

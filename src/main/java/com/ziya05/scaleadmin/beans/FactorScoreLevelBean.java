@@ -6,20 +6,20 @@ import java.text.DecimalFormat;
 public class FactorScoreLevelBean implements Serializable {
 	private static final long serialVersionUID = 1L; 
 	
-	private DecimalFormat df = new DecimalFormat("#####.###");
+	private transient DecimalFormat df = new DecimalFormat("#####.###");
 	
+	private int factorId;
 	private String name;
 	private double score;
 	private String formatScore;
 	private int level;
-	
-	public FactorScoreLevelBean() {}
 
-	public FactorScoreLevelBean(String name, double score, int level) {
-		super();
-		this.name = name;
-		this.score = score;
-		this.level = level;
+	public int getFactorId() {
+		return factorId;
+	}
+
+	public void setFactorId(int factorId) {
+		this.factorId = factorId;
 	}
 
 	public String getName() {

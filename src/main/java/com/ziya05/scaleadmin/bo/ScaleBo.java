@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.naming.NamingException;
 
+import com.ziya05.scaleadmin.beans.BaseScaleBean;
 import com.ziya05.scaleadmin.beans.FactorScoreLevelBean;
 import com.ziya05.scaleadmin.beans.ResultAdviceBean;
 import com.ziya05.scaleadmin.beans.TesteeBaseBean;
@@ -18,6 +19,10 @@ public class ScaleBo implements IScaleBo {
 	
 	public ScaleBo() throws NamingException {
 		dao = ScaleDaoFactory.createScaleDao();
+	}
+	
+	public BaseScaleBean getBaseScale(int scaleId) throws ClassNotFoundException, SQLException{
+		return dao.getBaseScale(scaleId);
 	}
 	
 	public TesteeBaseBean getTesteeDataById(int id, int scaleId) 
@@ -42,6 +47,11 @@ public class ScaleBo implements IScaleBo {
 	public List<FactorScoreLevelBean> GetFactorScoreLevelList(int id, int scaleId)
 			throws ClassNotFoundException, SQLException {
 		return dao.GetFactorScoreLevelList(id, scaleId);
+	}
+	
+	public List<FactorScoreLevelBean> GetFactorScoreLevelListForChart(int id, int scaleId)
+			throws ClassNotFoundException, SQLException {
+		return dao.GetFactorScoreLevelListForChart(id, scaleId);
 	}
 
 }

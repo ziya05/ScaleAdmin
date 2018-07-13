@@ -28,7 +28,11 @@
         <param-name>encoding</param-name>  
         <param-value>UTF-8</param-value>  
     </init-param>  
-	</filter>  
+    <init-param>
+     	<param-name>excepUrlRegex</param-name>
+     	<param-value>^.*js$</param-value>
+     </init-param>
+  </filter>  
   
   <filter-mapping>
   	<filter-name>SessionFilter</filter-name>

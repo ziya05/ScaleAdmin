@@ -13,6 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.google.gson.Gson;
+import com.ziya05.scaleadmin.beans.BaseScaleBean;
+import com.ziya05.scaleadmin.beans.ChartType;
 import com.ziya05.scaleadmin.beans.FactorScoreLevelBean;
 import com.ziya05.scaleadmin.beans.ResultAdviceBean;
 import com.ziya05.scaleadmin.beans.TesteeBaseBean;
@@ -40,43 +43,54 @@ public class Detail extends HttpServlet {
 		int scaleId = Integer.parseInt(strScaleId);
 		
 		String page = null;
-		if (type.equals("base")) {
-			try {
+		
+		try {
+			if (type.equals("base")) {
+	
 				TesteeBaseBean bean = bo.getTesteeDataById(id, scaleId);
 				request.setAttribute("baseData", bean);				
 				
 				List<FactorScoreLevelBean> fslLst = bo.GetFactorScoreLevelList(id, scaleId);
 				request.setAttribute("fslLst", fslLst);
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IndexOutOfBoundsException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-			page = "/base.jsp";
-			
-		} else {
-			try {
+				
+				page = "/base.jsp";
+				
+			} else if (type.equals("advice")) {
+	
 				TesteeBaseBean base = bo.getTesteeDataById(id, scaleId);
 				List<ResultAdviceBean> lst = bo.GetResultAdviceList(id, scaleId);
 				clear(lst, base);
 				request.setAttribute("adviceLst", lst);
+	
+				page = "/advice.jsp";
 				
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			} else if (type.equals("chart")) {
+				
+				BaseScaleBean baseScale = bo.getBaseScale(scaleId);
+				
+				if (baseScale.getChartType() == ChartType.NOCHART.value()) {
+										
+					request.setAttribute("scaleName", baseScale.getName());
+					
+					page = "/nochart.jsp";
+				} else {
+					List<FactorScoreLevelBean> fslLst = bo.GetFactorScoreLevelListForChart(id, scaleId);
+					Gson gson = new Gson();
+					
+					String data = gson.toJson(fslLst);
+					request.setAttribute("fslLst", data);
+					
+					if (baseScale.getChartType() == ChartType.STANDARD.value()) {
+						page = "/chart.jsp";
+					} else if (baseScale.getChartType() == ChartType.CUSTOM.value()) {
+						page = "/chart" + baseScale.getScaleNumber() + ".jsp";
+					}
+				}
+				
 			}
-			
-			page = "/advice.jsp";
-			
+
+		} catch(Exception ex) {
+			throw new ServletException(ex.toString());
 		}
 		
 		RequestDispatcher dispatcher = this.getServletContext()

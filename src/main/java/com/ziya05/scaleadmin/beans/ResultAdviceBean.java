@@ -7,6 +7,7 @@ public class ResultAdviceBean implements Serializable {
 	private static final long serialVersionUID = 1L; 
 	private DecimalFormat df = new DecimalFormat("#####.###");
 	
+	private int factorId;
 	private String factorName;
 	private double score;
 	private String formatScore;
@@ -14,17 +15,12 @@ public class ResultAdviceBean implements Serializable {
 	private String description;
 	private String advice;
 	
-	public ResultAdviceBean() {
-		super();
+	public int getFactorId() {
+		return factorId;
 	}
 
-	public ResultAdviceBean(String factorName, double score, int level, String description, String advice) {
-		super();
-		this.factorName = factorName;
-		this.score = score;
-		this.level = level;
-		this.description = description;
-		this.advice = advice;
+	public void setFactorId(int factorId) {
+		this.factorId = factorId;
 	}
 
 	public String getFactorName() {
