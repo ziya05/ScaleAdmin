@@ -72,7 +72,7 @@ public class Detail extends HttpServlet {
 										
 					request.setAttribute("scaleName", baseScale.getName());
 					
-					page = "/nochart.jsp";
+					page = "/chart/nochart.jsp";
 				} else {
 					List<FactorScoreLevelBean> fslLst = bo.GetFactorScoreLevelListForChart(id, scaleId);
 					Gson gson = new Gson();
@@ -81,9 +81,9 @@ public class Detail extends HttpServlet {
 					request.setAttribute("fslLst", data);
 					
 					if (baseScale.getChartType() == ChartType.STANDARD.value()) {
-						page = "/chart.jsp";
+						page = "/chart/chart.jsp";
 					} else if (baseScale.getChartType() == ChartType.CUSTOM.value()) {
-						page = "/chart" + baseScale.getScaleNumber() + ".jsp";
+						page = "/chart/chart" + baseScale.getScaleNumber() + ".jsp";
 					}
 				}
 				

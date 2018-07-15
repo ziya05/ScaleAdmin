@@ -3,18 +3,7 @@
 <%@ page isELIgnored="false" %>
 
 <div>
-	<style>
-		.nochart-container {
-			width: 100%;
-			height: 500px;
-			display: flex;
-    		align-items: center;
-    		justify-content: center;
-		}
-		.nochart-tip {
-			font-size: 26px;
-		}
-	</style>
+	<link rel="stylesheet" href="assets/styles/chart.css" />
 
 	<div class="nochart-container">
 		<p class="nochart-tip">

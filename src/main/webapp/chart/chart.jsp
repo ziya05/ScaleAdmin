@@ -4,14 +4,10 @@
 <%@ page isELIgnored="false" %>
 
 <div>
-	<style>
-		.dataForChart { width: 0; height: 0; display: none; }
-		.chart-block { width: 100%; margin: 50px 0; padding-bottom: 50px; border-bottom: 1px solid rgb(227, 143, 45); }
-		.chart-panel { width: 100%; height: 500px; }
-	</style>
-	<script src="assets/scripts/echarts.min.js"></script>
-	<script src="assets/scripts/chart.js"></script>
-	<script src="assets/scripts/std-chart.js"></script>
+	<link rel="stylesheet" href="assets/styles/chart.css" />
+	<script src="assets/scripts/chart/echarts.min.js"></script>
+	<script src="assets/scripts/chart/chart.js"></script>
+	<script src="assets/scripts/chart/std-chart.js"></script>
 	<script>
 	
 		$(document).ready(function() {

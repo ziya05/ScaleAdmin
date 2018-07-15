@@ -1,15 +1,15 @@
 
 function loadLineChart(container, title, keyArr, valArr) {
-	var option = getLineOrBarOption(container, title, keyArr, valArr, 'line');
+	var option = getLineOrBarOption(title, keyArr, valArr, 'line');
 	_chart.setup(container, option);
 }
 
 function loadBarChart(container, title, keyArr, valArr) {
-	var option = getLineOrBarOption(container, title, keyArr, valArr, 'bar');
+	var option = getLineOrBarOption(title, keyArr, valArr, 'bar');
 	_chart.setup(container, option);
 }
 
-function getLineOrBarOption(container, title, keyArr, valArr, chartType) {
+function getLineOrBarOption(title, keyArr, valArr, chartType) {
 	var option = {
 			title : {
 		        text: title,
@@ -76,7 +76,7 @@ function getLineOrBarOption(container, title, keyArr, valArr, chartType) {
 }
 
 function loadPieChart(container, title, keyArr, dataArr) {
-	var option = getPieOrCircleOption(container, 
+	var option = getPieOrCircleOption( 
 			title, 
 			keyArr, 
 			dataArr, 
@@ -88,7 +88,7 @@ function loadPieChart(container, title, keyArr, dataArr) {
 }
 
 function loadCircleChart(container, title, keyArr, dataArr) {
-	var option = getPieOrCircleOption(container, 
+	var option = getPieOrCircleOption( 
 			title, 
 			keyArr, 
 			dataArr, 
@@ -99,7 +99,7 @@ function loadCircleChart(container, title, keyArr, dataArr) {
 	_chart.setup(container, option);
 }
 
-function getPieOrCircleOption(container, title, keyArr, 
+function getPieOrCircleOption(title, keyArr, 
 		dataArr, radius, avoidLabelOverlap,
 		labelShow, labelPosition) {
 	var option = {
