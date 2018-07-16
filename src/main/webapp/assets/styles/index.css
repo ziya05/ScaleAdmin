@@ -375,7 +375,8 @@ input:focus {
 }
 
 .testee-data-option,
-.testee-data-score {
+.testee-data-score,
+.testee-data-text {
 	margin: 20px 0;
 }
 
@@ -384,12 +385,16 @@ input:focus {
 	font-weight: 600;
 }
 
+.testee-data-row {
+	padding: 10px 0;
+}
+
 .testee-data-row > span {
 	display: inline-block;
 	width: 60px;
-	height: 40px;
 	font-weight: 600;
 	overflow: hidden;
+	vertical-align: middle;
 }
 
 .testee-data-row > .testee-data-row-index {
@@ -398,6 +403,10 @@ input:focus {
 
 .testee-data-row > .testee-data-row-head {
 	width: 140px;
+}
+
+.testee-data-row > .testee-data-row-text {
+	width: calc(100% - 160px);
 }
 
 .testee-data-row > .testee-data-row-split {

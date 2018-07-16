@@ -8,18 +8,8 @@ public class TesteeDataItemBean implements Serializable {
 	private int questionId;
 	private String optionId;
 	private int score;
+	private String text;
 	
-	public TesteeDataItemBean() {
-		super();
-	}
-
-	public TesteeDataItemBean(int questionId, String optionId, int score) {
-		super();
-		this.questionId = questionId;
-		this.optionId = optionId;
-		this.score = score;
-	}
-
 	public int getQuestionId() {
 		return questionId;
 	}
@@ -42,6 +32,14 @@ public class TesteeDataItemBean implements Serializable {
 
 	public void setScore(int score) {
 		this.score = score;
+	}
+
+	public String getText() {
+		return text;
+	}
+
+	public void setText(String text) {
+		this.text = text;
 	}
 	
 }

@@ -1,7 +1,7 @@
 package com.ziya05.scaleadmin;
 
 import java.io.IOException;
-import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.naming.NamingException;
@@ -19,6 +19,7 @@ import com.ziya05.scaleadmin.beans.ChartType;
 import com.ziya05.scaleadmin.beans.FactorScoreLevelBean;
 import com.ziya05.scaleadmin.beans.ResultAdviceBean;
 import com.ziya05.scaleadmin.beans.TesteeBaseBean;
+import com.ziya05.scaleadmin.beans.TesteeDataItemBean;
 import com.ziya05.scaleadmin.bo.IScaleBo;
 import com.ziya05.scaleadmin.factories.ScaleBoFactory;
 
@@ -48,7 +49,16 @@ public class Detail extends HttpServlet {
 			if (type.equals("base")) {
 	
 				TesteeBaseBean bean = bo.getTesteeDataById(id, scaleId);
-				request.setAttribute("baseData", bean);				
+				request.setAttribute("baseData", bean);		
+				
+				List<TesteeDataItemBean> textLst = 
+						new ArrayList<TesteeDataItemBean>();
+				for(TesteeDataItemBean item : bean.getItems()) {
+					if (!StringUtils.isAllBlank(item.getText())) {
+						textLst.add(item);
+					}
+				}
+				request.setAttribute("textLst", textLst);
 				
 				List<FactorScoreLevelBean> fslLst = bo.GetFactorScoreLevelList(id, scaleId);
 				request.setAttribute("fslLst", fslLst);

@@ -7,7 +7,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.sql.DataSource;
 
@@ -293,6 +295,20 @@ public class ScaleDao implements IScaleDao {
 			String optionSelected = this.trimLastSign(rs.getString("optionSelected"));
 			String scoreSelected = this.trimLastSign(rs.getString("scoreSelected"));
 			
+			this.closeResultSet(rs);
+			this.closeStatement(pstmt);
+			
+			sql = "select questionId, text from testeedatatext where baseId=? and scaleId=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, id);
+			pstmt.setInt(2, scaleId);
+			rs = pstmt.executeQuery();
+			
+			Map<Integer, String> textMap = new HashMap<Integer, String>();
+			while(rs.next()) {
+				textMap.put(rs.getInt("questionId"), rs.getString("text"));
+			}
+			
 		    String[] questionArr = questionIds.split(",");
 		    String[] optionArr = optionSelected.split(",");
 		    String[] scoreArr = scoreSelected.split(",");
@@ -307,6 +323,11 @@ public class ScaleDao implements IScaleDao {
 				bean.setQuestionId(Integer.parseInt(questionArr[i]));
 				bean.setOptionId(optionArr[i]);
 				bean.setScore(Integer.parseInt(scoreArr[i]));
+				
+				if (textMap.containsKey(bean.getQuestionId())) {
+					bean.setText(textMap.get(bean.getQuestionId()));
+				}
+				
 				lst.add(bean);
 			}														
 		} finally {

@@ -44,7 +44,7 @@
 							<fmt:formatNumber type="number" value="${ (item.questionId / 10 + 1) * 10 - 1 }" pattern="000" maxFractionDigits="0" />
 						</span>
 				</c:if>
-				<span class="testee-data-row-block" title="${ item.optionId }">
+				<span class="testee-data-row-block" title="${ item.optionId } ${ item.text }">
 					${ item.optionId }
 				</span>
 				<c:if test="${item.questionId % 10 != 0 && item.questionId % 5 == 0}">
@@ -58,6 +58,23 @@
 				</div>
 			</c:if>
 		</div>
+		<c:if test="${ requestScope.textLst.size() > 0 }">
+			<div class="testee-data-text">
+				<p class="testee-data-title">
+					可输入题目用户输入信息：
+				</p>
+				<c:forEach var="item" items="${ requestScope.textLst }">
+					<div class="testee-data-row">
+						<span class="testee-data-row-head">
+							${ item.questionId }
+						</span>
+						<span class="testee-data-row-text">
+							${ item.text }
+						</span>
+					</div>
+				</c:forEach>
+			</div>
+		</c:if>
 		<div class="testee-data-score">
 			<p class="testee-data-title">
 				选项得分：
