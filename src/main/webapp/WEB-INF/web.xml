@@ -58,6 +58,10 @@
   <servlet>
   	<servlet-name>QuickTest</servlet-name>
   	<servlet-class>com.ziya05.scaleadmin.QuickTest</servlet-class>
+  	<init-param>
+  		<param-name>api</param-name>
+  		<param-value>ScaleAPI</param-value>
+  	</init-param>
   </servlet>
   <servlet-mapping>
   	<servlet-name>Login</servlet-name>

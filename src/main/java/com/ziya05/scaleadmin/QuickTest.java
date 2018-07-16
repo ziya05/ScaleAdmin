@@ -1,12 +1,15 @@
 package com.ziya05.scaleadmin;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,15 +21,12 @@ import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.StatusLine;
 import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
-import org.apache.http.impl.client.HttpClients;
-
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.ziya05.scaleadmin.beans.test.InfoItem;
@@ -38,8 +38,33 @@ import com.ziya05.scaleadmin.beans.test.TesteeData;
 
 public class QuickTest extends HttpServlet {
 	
-	private String restService = "http://localhost:8080/ScaleAPI/";
+	private String restService = "";
+	
 	private Gson gson = new Gson();
+		
+	public void service(ServletRequest request, 
+			ServletResponse response) throws ServletException, IOException {
+		
+		HttpServletRequest req = ((HttpServletRequest)request);
+		
+		String api = this.getInitParameter("api");
+
+		if (StringUtils.isAllBlank(api)) {
+			PrintWriter pw = response.getWriter();
+			pw.println("UnSupport!");
+			pw.close();
+			
+		} else {
+			restService = String.format("%s://%s:%d/%s/", 
+					req.getScheme(),
+					req.getServerName(),
+					req.getServerPort(),
+					api
+					);
+		}
+		
+		super.service(request, response);
+	}
 	
 	public void doGet(HttpServletRequest request,
             HttpServletResponse response)
@@ -161,7 +186,7 @@ public class QuickTest extends HttpServlet {
 
 		this.doGet(request, response);
 	}
-	
+
 	public List<Scale> getScales() throws ClientProtocolException, IOException {
 
 		String json = this.getContent("ScaleService/scales");
