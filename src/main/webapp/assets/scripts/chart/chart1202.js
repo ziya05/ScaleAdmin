@@ -1,7 +1,7 @@
 
-function loadENChart(container) {
-	var dataPoint = [-4.5, 1.8];
-	
+// dataPoint为EN的Z分数数组， 索引0为E量表的Z分数， 索引1为N量表的Z分数
+function loadENChart(container, dataPoint) {
+
 	var minVal = getMin(-3, dataPoint[0], dataPoint[1]);
 	var maxVal = getMax(3, dataPoint[0], dataPoint[1]);
 
@@ -9,9 +9,9 @@ function loadENChart(container) {
 	_chart.setup(container, optionEN);
 }
 
-function loadTotalChart(container) {
-	var pointArr = [1.8, 2.3, -1.6, -2.2];
-	
+// pointArr为ENPL数组， 顺序应为E, N, P, L
+function loadTotalChart(container, pointArr) {
+
 	var dataPointArr = [];
 	
 	for (var i = 0; i < pointArr.length; i++) {

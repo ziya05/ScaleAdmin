@@ -10,10 +10,31 @@
 	<script>
 		$(document).ready(function() {
 			var obj = getObj();
+			var en = new Array(2);
+			var enpl = new Array(4);
 			
-			loadENChart($(".en-chart")[0]);
+			$.each(obj, function(i, item) { 
+				var score = item.score.toFixed(2);
+				
+				if (item.name == "内外向Z分数") {
+					en[0] = score;
+					enpl[0] = score;
+				} else if (item.name == "神经质Z分数") {
+					en[1] = score;
+					enpl[1] = score;
+				} else if (item.name == "精神质Z分数") {
+					enpl[2] = score;
+				} else if (item.name == "社会掩饰性Z分数") {
+					enpl[3] = score;
+				}
+			});
 			
-			loadTotalChart($(".total-chart")[0]);
+			console.log(en);
+			console.log(enpl);
+			
+			loadENChart($(".en-chart")[0], en);
+			
+			loadTotalChart($(".total-chart")[0], enpl);
 		})
 	</script>
 	

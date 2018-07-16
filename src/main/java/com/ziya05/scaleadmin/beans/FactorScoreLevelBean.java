@@ -13,6 +13,7 @@ public class FactorScoreLevelBean implements Serializable {
 	private double score;
 	private String formatScore;
 	private int level;
+	private boolean inResult;
 
 	public int getFactorId() {
 		return factorId;
@@ -51,4 +52,14 @@ public class FactorScoreLevelBean implements Serializable {
 		this.level = level;
 	}
 
+	public boolean isInResult() {
+		return inResult;
+	}
+
+	public void setInResult(boolean inResult) {
+		this.inResult = inResult;
+	}
+
+	
+	
 }

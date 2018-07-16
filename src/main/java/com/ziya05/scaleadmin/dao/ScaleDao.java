@@ -407,13 +407,13 @@ public class ScaleDao implements IScaleDao {
 	
 	public List<FactorScoreLevelBean> GetFactorScoreLevelList(int id, int scaleId)
 			throws ClassNotFoundException, SQLException {
-		String sql = "select factorId, name, score, levelId from resultfactor where testeeBaseId=? and scaleId=? order by factorId";
+		String sql = "select r.factorId, r.name, r.score, r.levelId, f.inResult from resultfactor r, factor f where r.testeeBaseId=? and r.scaleId=? and r.scaleId = f.scaleId and r.factorId = f.factorId order by r.factorId";
 		return this.GetFactorScoreLevelList(id, scaleId, sql);
 	}
 	
 	public List<FactorScoreLevelBean> GetFactorScoreLevelListForChart(int id, int scaleId)
 			throws ClassNotFoundException, SQLException {
-		String sql = "select r.factorId, r.name, r.score, r.levelId from resultfactor r, factor f  where r.testeeBaseId=? and r.scaleId=? and r.scaleId = f.scaleId and r.factorId = f.factorId and f.inChart = 1 order by r.factorId";
+		String sql = "select r.factorId, r.name, r.score, r.levelId, f.inResult from resultfactor r, factor f  where r.testeeBaseId=? and r.scaleId=? and r.scaleId = f.scaleId and r.factorId = f.factorId and f.inChart = 1 order by r.factorId";
 		return this.GetFactorScoreLevelList(id, scaleId, sql);
 	}
 	
@@ -440,6 +440,7 @@ public class ScaleDao implements IScaleDao {
 				bean.setName(rs.getString("name"));
 				bean.setScore(rs.getDouble("score"));
 				bean.setLevel(rs.getInt("levelId"));
+				bean.setInResult(rs.getBoolean("inResult"));
 				lst.add(bean);
 			}
 		

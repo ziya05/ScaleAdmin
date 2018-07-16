@@ -108,20 +108,22 @@
 			因子得分及等级：
 		</p>
 		<c:forEach var="item" items="${requestScope.fslLst }">
-			<div class="testee-data-row">
-				<span class="testee-data-row-index">
-					${ item.factorId }
-				</span>
-				<span class="testee-data-row-head" title="因子名称：${ item.name }">
-					${ item.name }
-				</span>
-				<span class="testee-data-row-block" title="分数：${ item.score }">
-					${ item.formatScore }
-				</span>
-				<span class="testee-data-row-block" title="等级：${ item.level }">
-					${ item.level }
-				</span>
-			</div>
+			<c:if test="${ item.inResult }">
+				<div class="testee-data-row">
+					<span class="testee-data-row-index">
+						${ item.factorId }
+					</span>
+					<span class="testee-data-row-head" title="因子名称：${ item.name }">
+						${ item.name }
+					</span>
+					<span class="testee-data-row-block" title="分数：${ item.score }">
+						${ item.formatScore }
+					</span>
+					<span class="testee-data-row-block" title="等级：${ item.level }">
+						${ item.level }
+					</span>
+				</div>
+			</c:if>
 		</c:forEach>
 	</div>
 </div>
