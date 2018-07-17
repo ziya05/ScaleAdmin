@@ -103,6 +103,15 @@
 			margin: 20px;
 		}
 		
+		.textInputPanel, .quickPastePanel {
+			margin: 20px 0;
+		}
+		
+		.textQuestionText {
+			width: 300px;
+			height: 100px;
+		}
+		
 		.btn {
 			width: 100px;
 			height: 30px;
@@ -192,8 +201,24 @@
 
 			</div>
 			
-			<textarea id="answerConent" ></textarea>
-		
+			<c:if test="${ requestScope.textQuestionLst.size() > 0 }">
+				<div class="textInputPanel">
+					<p>文本问题项输入区</p>
+					<c:forEach var="item" items="${ requestScope.textQuestionLst }" >
+						<div class="questionDataRow">
+							<label class="textQuestionLabel">${ item.id }</label>
+							<textarea name="textQuestion" class="textQuestionText" ></textarea>
+						</div>
+					</c:forEach>
+				
+				</div>
+			</c:if>
+			
+			<div class="quickPastePanel">
+				<p>快速粘贴区</p>
+				<textarea id="answerConent" ></textarea>
+			</div>
+			
 			<div>
 				<input type="button" class="btn" value="应用" />
 				<input id="btnClear" type="button" class="btn" value="清空" />

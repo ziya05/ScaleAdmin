@@ -32,6 +32,7 @@ import com.google.gson.reflect.TypeToken;
 import com.ziya05.scaleadmin.beans.test.InfoItem;
 import com.ziya05.scaleadmin.beans.test.OptionSelected;
 import com.ziya05.scaleadmin.beans.test.PersonalInfo;
+import com.ziya05.scaleadmin.beans.test.Question;
 import com.ziya05.scaleadmin.beans.test.Scale;
 import com.ziya05.scaleadmin.beans.test.SelectedData;
 import com.ziya05.scaleadmin.beans.test.TesteeData;
@@ -97,6 +98,15 @@ public class QuickTest extends HttpServlet {
 			
 			PersonalInfo info = this.getPersonalInfo(scaleId);
 			request.setAttribute("info", info);
+			
+			List<Question> textQuestionLst = new ArrayList<Question>();
+			for(Question question : scale.getItems()) {
+				if (question.getQuestionType() == 11) {
+					textQuestionLst.add(question);
+				}
+			}
+			System.out.println("the size of textQuestionLst is : " + textQuestionLst.size());
+			request.setAttribute("textQuestionLst", textQuestionLst);
 		}
 		
 		RequestDispatcher dispatcher = this.getServletContext()
@@ -116,6 +126,8 @@ public class QuickTest extends HttpServlet {
 		
 		String[] attrs = request.getParameterValues("attr");
 		String[] answers = request.getParameterValues("answer");
+		
+		String[] textQuestions = request.getParameterValues("textQuestion");
 		
 		System.out.println("name: " + name);
 		System.out.println("gender: " + gender);
@@ -144,6 +156,7 @@ public class QuickTest extends HttpServlet {
 		try {
 			int scaleId = Integer.parseInt(strScaleId);
 			PersonalInfo info = this.getPersonalInfo(scaleId);
+			Scale scale = this.getScale(scaleId);
 	
 			List<InfoItem> items = info.getItems();
 			
@@ -167,10 +180,17 @@ public class QuickTest extends HttpServlet {
 			SelectedData selectedData = new SelectedData();
 			List<OptionSelected> optionSelectedLst = new ArrayList<OptionSelected>();
 			selectedData.setItems(optionSelectedLst);
+			int j = 0;
 			for(int i = 0; i < anwsersSize; i++) {
 				OptionSelected os = new OptionSelected();
 				os.setQuestionId(i + 1);
 				os.setOptionId(answers[i]);
+				
+				if (scale.getItems().get(i).getQuestionType() == 11) {
+					os.setText(textQuestions[j]);
+					j++;
+				}
+				
 				optionSelectedLst.add(os);
 			}
 			
